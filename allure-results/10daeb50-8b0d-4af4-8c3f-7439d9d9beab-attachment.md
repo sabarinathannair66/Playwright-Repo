@@ -1,0 +1,89 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: api.spec.js >> Put request - update whole user details
+- Location: tests\api.spec.js:35:6
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 200
+Received: [Function status]
+```
+
+# Test source
+
+```ts
+  1  | import{test,expect}from '@playwright/test'
+  2  | 
+  3  | test('Get request - fetch users',async({request})=> {
+  4  | const response=await request.get('https://jsonplaceholder.typicode.com/users/3')
+  5  | expect(response.ok()).toBeTruthy()
+  6  | const body=await response.json()  //convert to json
+  7  | console.log(body)
+  8  | })
+  9  | 
+  10 | test('Post request - create users',async({request})=> {
+  11 | const response=await request.post('https://jsonplaceholder.typicode.com/users',{
+  12 |   data:{
+  13 |     name:'Nandu Nair',
+  14 |     username: 'Nandu',
+  15 |     email: 'nandu@test.com'
+  16 | }  
+  17 | })
+  18 | expect(response.status()).toBe(201)
+  19 | const body=await response.json()
+  20 | console.log(body)
+  21 | })
+  22 | 
+  23 | test('Patch request - partially updating users',async({request})=> {
+  24 | const response=await request.patch('https://jsonplaceholder.typicode.com/users/1',{
+  25 |     data:{
+  26 |         email:'updatedmail@gmail.com'
+  27 |     }
+  28 | })
+  29 | expect(response.status()).toBe(200)
+  30 | const body=await response.json()
+  31 | console.log(body)
+  32 | })
+  33 | 
+  34 | 
+  35 | test.only('Put request - update whole user details',async({request})=>{
+  36 |     const response=await request.put('https://jsonplaceholder.typicode.com/users/1',{
+  37 |       data:{
+  38 |          id: 1,
+  39 |     name: "John Graham",
+  40 |     username: "John",
+  41 |     email: "puttest@april.biz",
+  42 |     address: {
+  43 |       street: "Kulas Light",
+  44 |       suite: "Apt. 001",
+  45 |       city: "Gwenborough",
+  46 |       zipcode: "92998-3874",
+  47 |       geo: {
+  48 |         lat: "-37.3159",
+  49 |         lng: "81.1496"
+  50 |       }
+  51 |     },
+  52 |     phone: "1-770-736-8031 x56442",
+  53 |     website: "hildegard.org",
+  54 |     company: {
+  55 |       name: "Romaguera-Crona",
+  56 |       catchPhrase: "Multi-layered client-server neural-net",
+  57 |       bs: "harness real-time e-markets"
+  58 |     }
+  59 |       }
+  60 |     })
+> 61 |     expect(response.status).toBe(200)
+     |                             ^ Error: expect(received).toBe(expected) // Object.is equality
+  62 |     const body=await response.json()
+  63 |     console.log(body)
+  64 | })
+```

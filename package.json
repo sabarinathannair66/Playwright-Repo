@@ -1,0 +1,21 @@
+{
+  "name": "obsqura-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "abstraction.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@cucumber/cucumber": "^13.2.1",
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.1.2",
+    "allure": "^3.15.0",
+    "allure-playwright": "^3.10.2"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
+  }
+}

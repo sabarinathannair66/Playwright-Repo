@@ -1,0 +1,9 @@
+{
+    "validusername":"standard_user",
+    "validpassword":"secret_sauce",
+    "invalidusername":"standard_users",
+    "invalidpassword":"secret_sauces",
+    "checkoutname": "Nandu",
+    "checkoutsurname": "Nair",
+    "checkoutzip": "60001"
+}

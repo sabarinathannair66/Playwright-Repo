@@ -1,0 +1,42 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: addtocart.spec.js >> Adding inventory to cart
+- Location: tests\addtocart.spec.js:7:5
+
+# Error details
+
+```
+ReferenceError: InventoryPage is not defined
+```
+
+# Test source
+
+```ts
+  1  | import{test,expect}from '@playwright/test' 
+  2  | import { LoginPage } from '../pages/LoginPage'
+  3  | import logindata from '../utils/testData.json' with {type:'json'}
+  4  | import inventorydata from '../pages/InventoryPage'
+  5  | 
+  6  | 
+  7  | test('Adding inventory to cart',async({page})=>{
+  8  | const loginPage = new LoginPage(page)
+> 9  | const inventoryPage= new InventoryPage(page)
+     |                      ^ ReferenceError: InventoryPage is not defined
+  10 | const usernamevalue = logindata.validusername
+  11 | const passwordvalue = logindata.validpassword
+  12 | const checkoutname = inventorydata.checkoutname
+  13 | const checkoutsurname= inventorydata.checkoutsurname
+  14 | const checkoutzip= inventorydata.checkoutzip
+  15 | await loginPage.navigateToApplication()
+  16 | await loginPage.userLogin(usernamevalue,passwordvalue)
+  17 | await loginPage.validateloginpage()
+  18 | await inventoryPage.addToCart(checkoutname,checkoutsurname,checkoutzip)
+  19 | 
+  20 | })
+```
